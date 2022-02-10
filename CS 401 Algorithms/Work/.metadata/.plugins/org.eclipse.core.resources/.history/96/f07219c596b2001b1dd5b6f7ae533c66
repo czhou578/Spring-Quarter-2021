@@ -1,0 +1,14 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class ConvexHullBuilderTest {
+
+	ArrayList<Point2D> array;
+	@Test
+	void test() {
+		ConvexHullBuilder junit = new ConvexHullBuilder();
+		fail("Not yet implemented");
+	}
+
+}

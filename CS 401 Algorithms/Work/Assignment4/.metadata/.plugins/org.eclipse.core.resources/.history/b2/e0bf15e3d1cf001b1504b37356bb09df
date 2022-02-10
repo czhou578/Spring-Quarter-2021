@@ -1,0 +1,41 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class AssigTest {
+	private LastFMRecommender recommend;
+	
+	@BeforeEach
+	public void setUp() throws FileNotFoundException {
+	    File file = new File("user_friends.dat");
+	    File file2 = new File("user_artists.dat");
+	    File file3 = new File("artists.dat");
+
+	    recommend = new LastFMRecommender(file, file2, file3);
+	}
+
+	@Test
+	void test() {
+        recommend.listFriends(3);
+		PrintStream originalOut = System.out;  // temporarily store sysout
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream(100);
+        PrintStream inputCapture = new PrintStream(outStream);
+        System.setOut(inputCapture);  // sets system.out to the old stream
+        // call the function that prints here; you can make this a function by using lambdas and the Runnable interface
+        inputCapture.flush();
+		String expected = "[78, 255, 460, 837, 1740, 1801, 1975]";
+        String printOutput = outStream.toString();  // this variable will have what the function prints to system.out
+//        System.out.println(printOutput);
+        System.setOut(originalOut);
+		assertEquals(expected, printOutput);
+	}
+
+}

@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\mycol\Spring Quarter 2021\CS 410 Software Engineering\.metadata\.plugins\org.eclipse.jdt.core
+1749642331.index
+1628320537.index
+3150540696.index
+3254420414.index
+580463317.index

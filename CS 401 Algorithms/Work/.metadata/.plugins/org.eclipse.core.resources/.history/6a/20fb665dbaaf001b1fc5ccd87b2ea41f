@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.StdDraw;
+
+public class ConvexHullBuilder {
+	
+	Iterable<Point2D> finalHull;
+	
+	public ConvexHullBuilder(ArrayList<Point2D> arraylist) {
+		finalHull = arraylist;
+	}
+	
+	public Iterable<Point2D> sortY(Iterable<Point2D> list) {
+		//System.out.println("working");
+		ArrayList<Point2D> tempArray = new ArrayList<Point2D>();
+		
+		while(list.iterator().hasNext()) {
+			tempArray.add(list.iterator().next());
+		}
+		System.out.println(tempArray.toString());
+
+//		for (int i = 0; i < tempArray.size(); i++) {
+//			int temp = i;
+//			for (int j = i + 1; j < tempArray.size(); j++) {
+//				if (tempArray.get(j).y() < tempArray.get(temp).y()) {
+//					temp = j;
+//				}
+//			}
+//			Point2D swap = tempArray.get(i);
+//			Point2D swap2 = tempArray.get(i);
+//
+//			Point2D swap3 = tempArray.get(temp);
+//			
+//			swap2 = swap3;
+//			swap3 = swap;
+//			
+//		}
+		
+		//list = tempArray;
+		
+		return list;
+	}
+
+	public Iterable<Point2D> hull() {
+		
+		for (Point2D p : finalHull) {
+			System.out.println(p.x());
+			System.out.println(p.y());
+			System.out.println();
+		}
+		
+		Collections.sort(list);
+		
+		sortY(finalHull);
+		
+		//sort ascending based on y coordinate
+		
+		return finalHull;
+	}
+	
+	
+}

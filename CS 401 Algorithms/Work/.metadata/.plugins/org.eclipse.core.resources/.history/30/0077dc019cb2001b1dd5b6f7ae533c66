@@ -1,0 +1,36 @@
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.Stack;
+
+import org.junit.jupiter.api.Test;
+
+class ConvexHullBuilderTest {
+
+	@Test
+	void test() {
+		ArrayList<Point2D> testlist = new ArrayList<Point2D>();
+		Point2D point1 = new Point2D(4000, 5875);
+		Point2D point2 = new Point2D(6038, 6675);
+		Point2D point3 = new Point2D(4538, 7563);
+
+		testlist.add(point1);
+		testlist.add(point2);
+		testlist.add(point3);
+		
+		Stack<Point2D> stack = new Stack<Point2D>();
+		stack.push(point1);
+		stack.push(point2);
+		stack.push(point3);
+		
+		ConvexHullBuilder junit = new ConvexHullBuilder(testlist);
+		Iterable<Point2D> hull = testlist;
+		
+		junit.sortY(hull);
+		junit.polar(hull);
+		
+		assertEquals(stack, junit.leftOrRight(hull, point1));
+		
+	}
+
+}

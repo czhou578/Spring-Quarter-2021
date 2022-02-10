@@ -1,0 +1,13 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "junit-4.13.2.jar",
+    "c:\\Users\\mycol\\Downloads\\hamcrest-core-1.3-javadoc.jar",
+    "hamcrest-core-1.3-javadoc.jar",
+    "JAR files/junit-4.13.2.jar",
+    "JAR files/hamcrest-core-1.3-javadoc.jar"
+  ],
+  "java.project.sourcePaths": [
+    "Work"
+  ]
+}

@@ -1,0 +1,115 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.StdDraw;
+
+public class ConvexHullBuilder {
+	
+	Iterable<Point2D> finalHull;
+	ArrayList<Point2D> tempArray;
+	
+	public ConvexHullBuilder(ArrayList<Point2D> arraylist) {
+		finalHull = arraylist;
+		tempArray = new ArrayList<Point2D>(arraylist);
+	}
+	
+	public Iterable<Point2D> sortY(Iterable<Point2D> list) {
+		
+		Collections.sort(tempArray);
+		//System.out.println(tempArray.toString());
+		
+		list = tempArray;
+		
+		return list;
+	}
+	
+	public Iterable<Point2D> polar(Iterable<Point2D> hull) { //done
+		ArrayList<Point2D> list = new ArrayList<Point2D>();
+		Point2D startPoint;
+		Iterator<Point2D> iter = hull.iterator();
+		startPoint = iter.next();
+		
+		while (iter.hasNext()) {
+			Point2D temp = iter.next();
+			list.add(temp);			
+			Collections.sort(list, startPoint.polarOrder());
+		}
+		
+		Collections.reverse(list);
+		
+		System.out.println(list.toString());
+		
+		hull = list;
+		
+		
+		
+		return hull;
+	}
+	
+	public Iterable<Point2D> leftOrRight(Iterable<Point2D> hull, Point2D start) {
+		Iterator<Point2D> iter = finalHull.iterator();
+		ArrayList<Point2D> list = new ArrayList<Point2D>();
+		ArrayList<Point2D> finalList = new ArrayList<Point2D>();
+		
+		while (iter.hasNext()) { //add everything to list to be sorted
+			list.add(iter.next());
+		}
+		
+		if (list.size() >= 1) { //add starting point (not in array) and first element in list
+			finalList.add(start);
+			finalList.add(list.get(0));
+		}
+		
+		System.out.println("before processing:" + list.toString());
+		
+		if (list.size() > 2) {
+			
+			for (int i = 0; i < list.size() - 2; i++) {
+				for (int j = i + 1; j < list.size() - 1; j++) {
+					
+					if (list.get(i).ccw(list.get(i), list.get(j), list.get(j + 1)) == -1 && j + 1 == list.size() - 1) {
+						System.out.println("false");
+						break;
+					} else if (list.get(i).ccw(list.get(i), list.get(j), list.get(j + 1)) == 1 && j + 1 == list.size() - 1) {
+						System.out.println("true");
+
+						finalList.add(list.get(j));
+						finalList.add(list.get(j + 1));
+					}
+				}
+			}
+			
+		}
+		
+		System.out.println("before returning:" + finalList.toString());
+		
+		hull = finalList;
+		
+		return hull;
+		
+	}
+
+	public Iterable<Point2D> hull() {
+		Iterator<Point2D> iter = finalHull.iterator();
+		Point2D startPoint = iter.next();
+		
+		sortY(finalHull);
+		polar(finalHull);
+		leftOrRight(finalHull, startPoint);
+		
+//		for (Point2D p : finalHull) {
+//			System.out.println(p.x());
+//			System.out.println(p.y());
+//			System.out.println();
+//		}
+		
+		
+		//sort ascending based on y coordinate
+		
+		return finalHull;
+	}
+	
+	
+}
